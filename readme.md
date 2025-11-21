@@ -46,6 +46,14 @@ Standard LLMs lack:
 
 ---
 
+## 🧠 **Machine Learning Foundation**
+Unlike standard chatbots that "guess," Dia-Agent's risk assessment logic is grounded in rigorous data science.
+* **Model:** A Stacking Ensemble Classifier (LightGBM, XGBoost, CatBoost) trained on patient health data.
+* **Validation:** Validated using Stratified K-Fold Cross-Validation (10 folds) to ensure clinical reliability.
+* **Key Predictors:** Uses SMOTE to identify critical risk factors: Fasting Glucose, BMI, and Hypertension.
+* **Safety:** The agent uses these data-derived thresholds to trigger the "Human-in-the-Loop" safety pause.
+---
+
 ## 🛠️ _**Tech Stack**_
 - **Google Agent Development Kit (ADK)**: For agent orchestration and state management.
 - **Gemini 2.0 Flash**: The reasoning engine for the agents.
@@ -72,13 +80,127 @@ The system utilizes a **Sequential Agent Pipeline** (`SequentialAgent`) to ensur
     * Queries **Long-term Memory** to find patient preferences (e.g., "Vegan").
     * Generates a diet/exercise plan that combines the **Clinical Risk** with **Personal Preferences**.
 
-```mermaid
-graph TD
-    A[Patient Data] --> B[Clinical Analyst Agent];
-    B --> C{Risk Calculation};
-    C -- High Risk --> D[🛑 PAUSE: Notify Doctor];
-    D --> E[Doctor Approval];
-    E --> F[Lifestyle Coach Agent];
-    C -- Low Risk --> F;
-    F --> G[(Memory Lookup)];
-    G --> H[Final Personalized Plan];
+## 📌 _**Architecture & How It Works**_
+
+The system utilizes a **Sequential Agent Pipeline** to ensure tasks are performed in a specific order, with a critical **Human-in-the-Loop** safety check.
+
+```plaintext
+                    +---------------------------+
+                    |   Patient Clinical Data   |
+                    |  (Glucose, BMI, Age...)   |
+                    +-------------+-------------+
+                                  |
+                                  v
+                   +-----------------------------+
+                   |  Agent 1: Clinical Analyst  |
+                   | (Deterministic Logic Tool)  |
+                   +--------------+--------------+
+                                  |
+                                  v
+                       +----------------------+
+                       |   Risk Calculation   |
+                       +----------+-----------+
+                                  |
+                  +---------------+---------------+
+                  |                               |
+            [High Risk]                      [Low Risk]
+                  |                               |
+                  v                               |
+     +-------------------------+                  |
+     | 🛑 SYSTEM PAUSE (ADK)   |                  |
+     | Notify Doctor Tool      |                  |
+     +------------+------------+                  |
+                  |                               |
+                  v                               |
+     +-------------------------+                  |
+     | 👨‍⚕️ Doctor Approval     |                  |
+     | (Human-in-the-Loop)     |                  |
+     +------------+------------+                  |
+                  |                               |
+                  v                               v
+      +-----------------------------------------------+
+      |         Agent 2: Lifestyle Coach              |
+      |       (Empathetic Generative AI)              |
+      +-----------------------+-----------------------+
+                              |
+                              v
+              +-------------------------------+
+              |   🧠 Long-Term Memory Check   |
+              | (Retrieves: "Vegan", "Swim")  |
+              +---------------+---------------+
+                              |
+                              v
+              +-------------------------------+
+              |   ✅ Final Personalized Plan  |
+              |  (Medical + Lifestyle Advice) |
+              +-------------------------------+
+```
+
+---
+
+## 👨‍🔬 _Clinical Logic_
+
+The agent does not "guess" diabetes risk. It uses strict clinical thresholds derived from data analysis:
+
+* **High Glucose:** > 125 mg/dL (+3 points)
+* **Elevated Glucose:** > 100 mg/dL (+1 point)
+* **Obesity:** BMI > 30 (+2 points)
+* **Hypertension:** Yes (+1 point)
+* **Age:** > 45 (+1 point)
+
+**Risk Classification:**
+
+* **HIGH (Score ≥ 3):** Immediate Doctor Notification Required.
+* **MODERATE (Score ≥ 1):** Lifestyle modification.
+* **LOW:** Routine checkup.
+
+---
+
+## 🐉 _Execution Steps_
+
+### **1. Clone & Install**
+```bash
+git clone [https://github.com/your-username/Dia-Agent-Diabetes-Capstone.git](https://github.com/your-username/Dia-Agent-Diabetes-Capstone.git)
+cd Dia-Agent-Diabetes-Capstone
+pip install -r requirements.txt
+```
+### **2. Configure Security**
+Create a `.env` file in the root directory and add your Google API Key:
+
+```ini
+GOOGLE_API_KEY=your_actual_api_key_here
+```
+### **3. Run the Simulation**
+Run the main agent script. This will simulate a full patient interaction, including the pause for doctor approval.
+```bash
+python main.py
+```
+
+---
+
+## 🗂 _**Folder Structure**_
+```
+Dia-Agent-Diabetes-Capstone
+│
+├── diabetes_tools.py        # Custom Clinical Tools (The Logic Layer)
+├── Dia_Agent_Capstone.py    # Agent Orchestration & Runner (The Application Layer)
+├── requirements.txt         # Project Dependencies
+├── .env                     # API Keys (Not uploaded to GitHub)
+├── README.md                # Project Documentation
+│
+└── research_and_analysis/   # Data Science Background
+    ├── final_year_project_code.ipynb  # Original ML Model Training
+    └── synthetic_healthcare_data.csv  # Dataset used for logic derivation
+```
+
+---
+
+## 📌 _Citation & References_
+* **Google ADK Documentation:** https://google.github.io/adk-docs/
+* **Gemini Models:** https://ai.google.dev/models
+* **Dataset:** Synthetic Healthcare Data (Analysis provided in `research_and_analysis` folder).
+
+---
+
+## ⚖️ _Disclaimer_
+*This is a prototype for the Kaggle AI Agents competition. While based on real clinical metrics, it should not be used for actual medical diagnosis without further clinical validation.*
