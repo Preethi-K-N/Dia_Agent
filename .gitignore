@@ -1,0 +1,8 @@
+# Security: Ignore API Keys
+.env
+
+# Python: Ignore system files
+__pycache__/
+*.pyc
+.venv/
+.vscode/
