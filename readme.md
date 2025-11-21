@@ -83,10 +83,6 @@ The system utilizes a **Sequential Agent Pipeline** (`SequentialAgent`) to ensur
     * Queries **Long-term Memory** to find patient preferences (e.g., "Vegan").
     * Generates a diet/exercise plan that combines the **Clinical Risk** with **Personal Preferences**.
 
-## 📌 _**Architecture & How It Works**_
-
-The system utilizes a **Sequential Agent Pipeline** to ensure tasks are performed in a specific order, with a critical **Human-in-the-Loop** safety check.
-
 ```plaintext
                     +---------------------------+
                     |   Patient Clinical Data   |
@@ -163,7 +159,7 @@ The agent does not "guess" diabetes risk. It uses strict clinical thresholds der
 
 ### **1. Clone & Install**
 ```bash
-git clone [https://github.com/your-username/Dia-Agent-Diabetes-Capstone.git](https://github.com/your-username/Dia-Agent-Diabetes-Capstone.git)
+git clone [https://github.com/Preethi-K-N/Dia-Agent-Diabetes-Capstone.git](https://github.com/Preethi-K-N/Dia-Agent-Diabetes-Capstone.git)
 cd Dia-Agent-Diabetes-Capstone
 pip install -r requirements.txt
 ```
@@ -176,7 +172,7 @@ GOOGLE_API_KEY=your_actual_api_key_here
 ### **3. Run the Simulation**
 Run the main agent script. This will simulate a full patient interaction, including the pause for doctor approval.
 ```bash
-python main.py
+python Dia_Agent_Capstone.py
 ```
 
 ---
