@@ -43,7 +43,6 @@ Standard LLMs lack:
 
 This screenshot captures the **Safety Protocol** in action. Notice how the Agent Engine halts execution upon detecting high risk, waits for the doctor's signal, and then utilizes patient history (Memory) to generate the final plan.
 
-![Dia-Agent Demo Output](demo_output.png)
 <img width="1022" height="701" alt="demo_output_1" src="https://github.com/user-attachments/assets/10538e09-9214-4388-b3b3-2f2c911bfe1d" />
 <img width="1475" height="704" alt="demo_output_2" src="https://github.com/user-attachments/assets/1451637a-33c1-41cf-bc42-a7ac25b2e23b" />
 
