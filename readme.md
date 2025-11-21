@@ -206,7 +206,7 @@ Dia-Agent-Diabetes-Capstone
 ## 📌 _Citation & References_
 * **Google ADK Documentation:** https://google.github.io/adk-docs/
 * **Gemini Models:** https://ai.google.dev/models
-* **Dataset:** Synthetic Healthcare Data (Analysis provided in `research_and_analysis` folder).
+* **Dataset:** Dataset (Analysis provided in `research_and_analysis` folder).
 
 ---
 
