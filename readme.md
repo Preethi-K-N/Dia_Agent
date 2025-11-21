@@ -188,8 +188,8 @@ Dia-Agent-Diabetes-Capstone
 ├── README.md                # Project Documentation
 │
 └── research_and_analysis/   # Data Science Background
-    ├── final_year_project_code.ipynb  # Original ML Model Training
-    └── synthetic_healthcare_data.csv  # Dataset used for logic derivation
+    ├── ML_code.ipynb        # Original ML Model Training
+    └── dataset.csv          # Dataset used for logic derivation
 ```
 
 ---
