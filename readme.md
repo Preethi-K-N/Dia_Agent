@@ -1,7 +1,6 @@
 # 🏥 Dia-Agent: Privacy-First Clinical Support System
 
-<img width="2816" height="1536" alt="Gemini_Generated_Image_7stsv37stsv37sts" src="https://github.com/user-attachments/assets/ffcd88de-01a8-449e-9d0e-bb40372f45ce" />
-
+<img width="1408" height="768" alt="Gemini_Generated_Image_z1ga58z1ga58z1ga" src="https://github.com/user-attachments/assets/fc6ce2f4-c9c4-4976-b520-95335d3b66b2" />
 
 ![Dia-Agent Banner](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
 ![Track](https://img.shields.io/badge/Track-Agents_for_Good-blue?style=for-the-badge)
